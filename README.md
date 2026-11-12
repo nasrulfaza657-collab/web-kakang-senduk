@@ -45,3 +45,6 @@ Aplikasi berbasis **Python Flask + MySQL**. Antarmuka menggunakan template HTML/
 - Database menyimpan satu suara per pemilih per kategori. Suara yang telah masuk tidak dapat diubah oleh pemilih.
 - Hapus kontestan yang sudah memiliki suara akan ditolak oleh relasi foreign key agar riwayat suara tidak rusak.
 - Untuk deployment publik, matikan `debug=True`, gunakan HTTPS, dan tambahkan perlindungan CSRF serta pembatasan percobaan login.
+
+
+menggunakan chatgpt  : alfazza949@gmail.com
