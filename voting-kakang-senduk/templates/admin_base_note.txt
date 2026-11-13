@@ -1,0 +1,1 @@
+Admin templates extend base.html and use admin-nav.

@@ -1,0 +1,131 @@
+
+{% extends 'base.html' %}
+
+{% block title %}Beranda · Kakang Senduk Ponorogo{% endblock %}
+
+{% block content %}
+
+<section class="hero">
+
+    <!-- BAGIAN KIRI -->
+    <div class="hero-copy">
+        <span class="eyebrow">DUTA WISATA · PONOROGO</span>
+
+        <h1>
+            Suaramu, untuk<br>
+            <em>masa depan wisata.</em>
+        </h1>
+
+        <p>
+            Dukung generasi muda terbaik yang siap memperkenalkan
+            kekayaan budaya dan pariwisata Ponorogo kepada dunia.
+        </p>
+
+        <div class="hero-actions">
+            <a class="btn gold" href="{{ url_for('contestants') }}">
+                Jelajahi Kontestan ↗
+            </a>
+
+            <a class="btn outline-light" href="{{ url_for('voting') }}">
+                Voting Sekarang
+            </a>
+        </div>
+
+        <div class="hero-note">
+            {% if period %}
+                <span class="live-dot"></span>
+                Voting berlangsung · {{ period.nama_periode }}
+            {% else %}
+                <span class="muted-dot"></span>
+                Periode voting belum aktif
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- BAGIAN KANAN: GAMBAR REOG -->
+    <div class="hero-art hero-reog">
+
+        <img
+            src="{{ url_for('static', filename='uploads/reog-ponorogo.jpg') }}"
+            class="hero-reog-image"
+            alt="Pertunjukan Reog Ponorogo"
+        >
+
+        <div class="hero-reog-caption">
+            <span>WARISAN BUDAYA</span>
+            <strong>REOG PONOROGO</strong>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- TENTANG PEMILIHAN -->
+<section class="intro section">
+
+    <div>
+        <span class="eyebrow dark">TENTANG PEMILIHAN</span>
+
+        <h2>
+            Kenali. Dukung.<br>
+            <em>Bangga bersama.</em>
+        </h2>
+    </div>
+
+    <p>
+        Pemilihan Kakang Senduk merupakan ruang bagi putra-putri terbaik
+        Ponorogo untuk menunjukkan wawasan, karakter, dan kepedulian
+        terhadap potensi daerah. Kenali profil mereka dan berikan dukunganmu.
+    </p>
+
+</section>
+
+
+<!-- STATISTIK -->
+<section class="stats-strip">
+
+    <div>
+        <strong>{{ counts.get('Kakang', 0) }}</strong>
+        <span>Kontestan Kakang</span>
+    </div>
+
+    <div>
+        <strong>{{ counts.get('Senduk', 0) }}</strong>
+        <span>Kontestan Senduk</span>
+    </div>
+
+    <div>
+        <strong>1 + 1</strong>
+        <span>Suara per akun</span>
+    </div>
+
+    <div>
+        <strong>100%</strong>
+        <span>Suara masyarakat</span>
+    </div>
+
+</section>
+
+
+<!-- AJAKAN VOTING -->
+<section class="section cta-panel">
+
+    <div>
+        <span class="eyebrow dark">SAATNYA BERPARTISIPASI</span>
+
+        <h2>Setiap suara punya arti.</h2>
+
+        <p>
+            Masuk atau buat akun untuk memberikan satu suara
+            pada setiap kategori.
+        </p>
+    </div>
+
+    <a class="btn dark-btn" href="{{ url_for('register') }}">
+        Mulai Berpartisipasi ↗
+    </a>
+
+</section>
+
+{% endblock %}

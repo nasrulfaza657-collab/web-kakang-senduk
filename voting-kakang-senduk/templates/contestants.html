@@ -1,0 +1,95 @@
+
+{% extends 'base.html' %}
+
+{% block title %}Kontestan{% endblock %}
+
+{% block content %}
+
+<section class="page-head">
+    <span class="eyebrow dark">PUTRA-PUTRI TERBAIK DAERAH</span>
+    <h1>Kenali para <em>kontestan.</em></h1>
+    <p>Temukan sosok yang akan membawa nama Ponorogo lebih dikenal.</p>
+</section>
+
+<form class="filters" method="GET">
+    <input
+        type="text"
+        name="q"
+        value="{{ search }}"
+        placeholder="Cari nama, nomor, instansi..."
+    >
+
+    <select name="kategori">
+        <option value="">Semua kategori</option>
+        <option value="Kakang" {% if category == 'Kakang' %}selected{% endif %}>
+            Kakang
+        </option>
+        <option value="Senduk" {% if category == 'Senduk' %}selected{% endif %}>
+            Senduk
+        </option>
+    </select>
+
+    <button type="submit" class="btn dark-btn">Cari</button>
+</form>
+
+<div class="cards">
+
+    {% for c in contestants %}
+
+    <article class="candidate">
+
+        <div class="candidate-photo">
+
+            {% if c.foto %}
+                <img
+                    src="{{ url_for('static', filename='uploads/' ~ c.foto) }}"
+                    alt="{{ c.nama }}"
+                    onerror="this.onerror=null; this.style.display='none'; this.nextElementSibling.style.display='flex';"
+                >
+
+                <div class="photo-placeholder" style="display:none;">
+                    {{ 'K' if c.kategori == 'Kakang' else 'S' }}
+                </div>
+            {% else %}
+                <div class="photo-placeholder">
+                    {{ 'K' if c.kategori == 'Kakang' else 'S' }}
+                </div>
+            {% endif %}
+
+            <span class="number">{{ c.nomor_peserta }}</span>
+
+        </div>
+
+        <div class="candidate-info">
+
+            <span class="tag">{{ c.kategori }}</span>
+
+            <h3>{{ c.nama }}</h3>
+
+            <p>{{ c.asal_instansi or 'Instansi belum diisi' }}</p>
+
+            <div class="candidate-actions">
+                <a href="{{ url_for('contestant_detail', cid=c.id) }}">
+                    Lihat profil ↗
+                </a>
+
+                <a href="{{ url_for('voting') }}">
+                    Vote
+                </a>
+            </div>
+
+        </div>
+
+    </article>
+
+    {% else %}
+
+    <div class="empty">
+        Belum ada data kontestan. Silakan kembali lagi nanti.
+    </div>
+
+    {% endfor %}
+
+</div>
+
+{% endblock %}
